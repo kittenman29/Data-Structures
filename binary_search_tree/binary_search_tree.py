@@ -19,10 +19,49 @@ class BinarySearchTree:
         self.right.insert(value)
 
   def contains(self, target):
-    pass
+    # if the target matches the root, return true
+    if target == self.value:
+      return True
+    # if the target is less than the root
+    elif target < self.value:
+      # if there is a subtree node to the left, recursive search
+      if self.left:
+        return self.left.contains(target)
+      else:
+        return False
+    elif target > self.value:
+      if self.right:
+        return self.right.contains(target)
+      else:
+        return False
 
   def get_max(self):
-    pass
+    # if nothing to the right of root, return self.value as max
+    if not self.right:
+      return self.value
+    # else keep going to the right of the root until 
+    else:
+      return self.right.get_max()
+
 
   def for_each(self, cb):
-    pass
+    arr = []
+    if self.value:
+      if self.left:
+        arr.append(self.left.value)
+        return self.left.for_each(cb)
+      if self.right:
+        arr.append(self.right.value)
+        return self.right.for_each(cb)
+      return arr
+    
+
+# bst = BinarySearchTree(5)
+# bst.insert(5)
+# bst.insert(8)
+# bst.insert(2)
+# bst.insert(14)
+# print(f"bst: {bst.value}")
+# print(f"left: {bst.left.value}")
+# print(f"right: {bst.right.value}")
+# print(f"left contains: {bst.contains(8)}")
