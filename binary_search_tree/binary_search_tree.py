@@ -45,16 +45,13 @@ class BinarySearchTree:
 
 
   def for_each(self, cb):
-    arr = []
     if self.value:
-      if self.left:
-        arr.append(self.left.value)
-        return self.left.for_each(cb)
-      if self.right:
-        arr.append(self.right.value)
-        return self.right.for_each(cb)
-      return arr
-    
+      cb(self.value)
+    if self.left:
+      self.left.for_each(cb)
+    if self.right:
+      self.right.for_each(cb)
+          
 
 # bst = BinarySearchTree(5)
 # bst.insert(5)
